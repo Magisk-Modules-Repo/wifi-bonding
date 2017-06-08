@@ -1,7 +1,7 @@
-id=template
-name=Template Module
-version=v1
+id=wifi-bonding
+name=Wifi Bonding
+version=1.0
 versionCode=1
-author=topjohnwu
-description=A short description
+author=simonsmh
+description=Wifi Bonding
 template=3

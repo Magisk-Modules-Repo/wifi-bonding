@@ -297,6 +297,13 @@ if $LATESTARTSERVICE; then
   cp -af $INSTALLER/common/service.sh $MODPATH/service.sh
 fi
 
+ui_print "- Migrating WCNSS_qcom_cfg.ini "
+if [ -f "/system/etc/wifi/WCNSS_qcom_cfg.ini" ]; then
+mkdir -p $MODPATH/system/etc/wifi/
+cp -af /system/etc/wifi/WCNSS_qcom_cfg.ini $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
+sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g' $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
+fi
+
 ui_print "- Setting permissions"
 set_permissions
 
