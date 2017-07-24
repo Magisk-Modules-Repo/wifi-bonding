@@ -12,4 +12,4 @@ Magisk v13 Template v4 compatabilities
 
 * Copyright (C) 2017 simonsmh <simonsmh@gmail.com>
 * Any issue or pull request is welcomed.
-* Star this module at [GitHub](https://github.com/Magisk-Modules-Repo/magisk-notocoloremoji-replacer).
+* Star this module at [GitHub](https://github.com/Magisk-Modules-Repo/magisk-wifi-bonding).
