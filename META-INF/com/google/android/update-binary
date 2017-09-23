@@ -158,7 +158,7 @@ $POSTFSDATA && cp -af $INSTALLER/common/post-fs-data.sh $MODPATH/post-fs-data.sh
 $LATESTARTSERVICE && cp -af $INSTALLER/common/service.sh $MODPATH/service.sh
 
 ui_print "- Migrating WCNSS_qcom_cfg.ini "
-if [ -f "/system/etc/wifi/WCNSS_qcom_cfg.ini" ]; then
+if [ -f "/system/etc/wifi/WCNSS_qcom_cfg.ini" -o -f "/dev/magisk/mirror/system/etc/wifi/WCNSS_qcom_cfg.ini" ]; then
   mkdir -p $MODPATH/system/etc/wifi/
   if [ -f /dev/magisk/mirror/system/etc/wifi/WCNSS_qcom_cfg.ini ]; then
     cp -af /dev/magisk/mirror/system/etc/wifi/WCNSS_qcom_cfg.ini $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
