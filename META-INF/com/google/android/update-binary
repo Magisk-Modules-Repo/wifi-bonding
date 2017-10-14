@@ -166,6 +166,12 @@ if [ -f "/system/etc/wifi/WCNSS_qcom_cfg.ini" -o -f "/dev/magisk/mirror/system/e
     cp -af /system/etc/wifi/WCNSS_qcom_cfg.ini $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
   fi
   sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g' $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
+  if [ -z "$(grep gChannelBondingMode24GHz $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini)" ]; then
+    sed -i 's/^END$/gChannelBondingMode24GHz=1\nEND/g' $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
+  fi
+  if [ -z "$(grep gChannelBondingMode5GHz $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini)" ]; then
+    sed -i 's/^END$/gChannelBondingMode5GHz=1\nEND/g' $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
+  fi
 else
   ui_print "- Migration FAILED"
 fi
