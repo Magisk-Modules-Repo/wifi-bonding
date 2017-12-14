@@ -6,7 +6,7 @@ Make 40Mhz runing at 2.4Ghz/5Ghz on your Qualcomm devices!
 
 * You should use latest Magisk Manager to install this module. If you meet any problem under installation from Magisk Manager, please try to install it from recovery.
 * Recent fixes:
-Fix devices with some missing tiles.
+Fix devices with vendor separated.
 
 #### Credit & Support
 
