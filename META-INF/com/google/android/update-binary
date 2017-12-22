@@ -157,32 +157,33 @@ $POSTFSDATA && cp -af $INSTALLER/common/post-fs-data.sh $MODPATH/post-fs-data.sh
 # service mode scripts
 $LATESTARTSERVICE && cp -af $INSTALLER/common/service.sh $MODPATH/service.sh
 
-WCNSS_qcom_cfg_Migration(){
-if [ -f /dev/magisk/mirror/system/etc/wifi/WCNSS_qcom_cfg.ini ]; then
-  rm -f $MODPATH/vendor/system/etc/wifi/WCNSS_qcom_cfg.ini
-  cp -af /dev/magisk/mirror/system/etc/wifi/WCNSS_qcom_cfg.ini $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
-elif [ -f /dev/magisk/mirror/system/vendor/etc/wifi/WCNSS_qcom_cfg.ini ]; then
-  rm -f $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
-  cp -af /system/vendor/etc/wifi/WCNSS_qcom_cfg.ini $MODPATH/vendor/system/etc/wifi/WCNSS_qcom_cfg.ini
+Cfg_Migration(){
+mkdir -p $MODPATH$CFGPATH
+if [ -f /sbin/.core/magisk/mirror$CFGPATH$CFG ]; then
+  cp -af /sbin/.core/mirror$CFGPATH$CFG $MODPATH$CFGPATH$CFG
+elif [ -f /dev/magisk/mirror$CFGPATH$CFG ]; then
+  cp -af /dev/magisk/mirror$CFGPATH$CFG $MODPATH$CFGPATH$CFG
+else
+  cp -af $CFGPATH$CFG $MODPATH$CFGPATH$CFG
 fi
-sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g' $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini
-if [ -z $(grep gChannelBondingMode24GHz $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini) ]; then
-  sed -i 's/^END$/gChannelBondingMode24GHz=1\nEND/g' $MODPATH$CFGPATH
+ui_print "- Starting modifiy"
+sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g' $MODPATH$CFGPATH$CFG
+if [ -z $(grep gChannelBondingMode24GHz $MODPATH$CFGPATH$CFG) ]; then
+  sed -i 's/^END$/gChannelBondingMode24GHz=1\nEND/g' $MODPATH$CFGPATH$CFG
 fi
-if [ -z $(grep gChannelBondingMode5GHz $MODPATH/system/etc/wifi/WCNSS_qcom_cfg.ini) ]; then
-  sed -i 's/^END$/gChannelBondingMode5GHz=1\nEND/g' $MODPATH$CFGPATH
+if [ -z $(grep gChannelBondingMode5GHz $MODPATH$CFGPATH$CFG) ]; then
+  sed -i 's/^END$/gChannelBondingMode5GHz=1\nEND/g' $MODPATH$CFGPATH$CFG
 fi
 }
 
 ui_print "- Migrating WCNSS_qcom_cfg.ini "
+CFG = "WCNSS_qcom_cfg.ini"
 if [ -f /system/etc/wifi/WCNSS_qcom_cfg.ini ]; then
-  CFGPATH = /system/etc/wifi/WCNSS_qcom_cfg.ini
-  mkdir -p $MODPATH/system/etc/wifi/
-  WCNSS_qcom_cfg_Migration
+  CFGPATH = /system/etc/wifi/
+  Cfg_Migration
 elif [ -f /system/vendor/etc/wifi/WCNSS_qcom_cfg.ini ]; then
-  CFGPATH = /system/vendor/etc/wifi/WCNSS_qcom_cfg.ini
-  mkdir -p $MODPATH/vendor/system/etc/wifi/
-  WCNSS_qcom_cfg_Migration
+  CFGPATH = /system/vendor/etc/wifi/
+  Cfg_Migration
 else
   ui_print "- Migration FAILED"
 fi
