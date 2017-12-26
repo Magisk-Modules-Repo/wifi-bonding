@@ -4,4 +4,4 @@ version=1.3
 versionCode=4
 author=simonsmh
 description=Make 2.4Ghz/5Ghz WiFi runing on 40Mhz on your Qualcomm devices.
-template=1400
+minMagisk=1500
