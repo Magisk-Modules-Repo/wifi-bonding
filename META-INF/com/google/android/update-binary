@@ -154,15 +154,15 @@ fi
 }
 
 ui_print "- Migrating WCNSS_qcom_cfg.ini "
-CFG = "WCNSS_qcom_cfg.ini"
-if [ -f /system/etc/wifi/WCNSS_qcom_cfg.ini ]; then
-  CFGPATH = /system/etc/wifi/
+CFG=WCNSS_qcom_cfg.ini
+if [ -f /system/etc/wifi/$CFG ]; then
+  CFGPATH=/system/etc/wifi/
   Cfg_Migration
-elif [ -f /system/vendor/etc/wifi/WCNSS_qcom_cfg.ini ]; then
-  CFGPATH = /system/vendor/etc/wifi/
+elif [ -f /system/vendor/etc/wifi/$CFG ]; then
+  CFGPATH=/system/vendor/etc/wifi/
   Cfg_Migration
 else
-  ui_print "- Migration FAILED"
+  ui_print "- Migration FAILED."
 fi
 
 ui_print "- Setting permissions"
