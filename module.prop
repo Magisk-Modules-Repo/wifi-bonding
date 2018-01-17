@@ -1,7 +1,7 @@
 id=wifi-bonding
 name=Wifi Bonding (Qualcomm)
-version=1.4
-versionCode=5
+version=1.5
+versionCode=6
 author=simonsmh
-description=Make 2.4Ghz/5Ghz WiFi runing on 40Mhz on your Qualcomm devices.
+description=Make 2.4Ghz/5Ghz WiFi running at 40Mhz on your Qualcomm devices.
 minMagisk=1500

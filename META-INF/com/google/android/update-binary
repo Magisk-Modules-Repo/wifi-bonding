@@ -153,7 +153,7 @@ if [ -z $(grep gChannelBondingMode5GHz $MODPATH$CFGPATH$CFG) ]; then
 fi
 }
 
-ui_print "- Migrating WCNSS_qcom_cfg.ini "
+ui_print "- Migrating WCNSS_qcom_cfg.ini"
 CFG=WCNSS_qcom_cfg.ini
 if [ -f /system/etc/wifi/$CFG ]; then
   CFGPATH=/system/etc/wifi/
@@ -161,8 +161,11 @@ if [ -f /system/etc/wifi/$CFG ]; then
 elif [ -f /system/vendor/etc/wifi/$CFG ]; then
   CFGPATH=/system/vendor/etc/wifi/
   Cfg_Migration
-else
-  ui_print "- Migration FAILED."
+elif [ -f /system/etc/firmware/wlan/qca_cld/$CFG ]; then
+  CFGPATH=/system/etc/firmware/wlan/qca_cld/
+  Cfg_Migration
+else 
+  ui_print "- Migration FAILED. Please report it to the developer with your WCNSS_qcom_cfg.ini path."
 fi
 
 ui_print "- Setting permissions"
