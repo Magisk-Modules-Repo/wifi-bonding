@@ -8,7 +8,7 @@ This module could work on most of the devices. By default, some devices provided
 
 * You should use latest Magisk Manager to install this module. If you meet any problem under installation from Magisk Manager, please try to install it from recovery.
 * Recent fixes:
-Add more file paths
+Add more file paths (prima)
 
 #### Credit & Support
 

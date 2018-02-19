@@ -164,8 +164,13 @@ elif [ -f /system/vendor/etc/wifi/$CFG ]; then
 elif [ -f /system/etc/firmware/wlan/qca_cld/$CFG ]; then
   CFGPATH=/system/etc/firmware/wlan/qca_cld/
   Cfg_Migration
+elif [ -f /system/etc/firmware/wlan/prima/$CFG ]; then
+  CFGPATH=/system/etc/firmware/wlan/prima/
+  Cfg_Migration
 else 
-  ui_print "- Migration FAILED. Please report it to the developer with your WCNSS_qcom_cfg.ini path."
+  ui_print "- Migration FAILED. "
+  ui_print "  Please report it to the developer with"
+  ui_print "  your WCNSS_qcom_cfg.ini path."
 fi
 
 ui_print "- Setting permissions"
