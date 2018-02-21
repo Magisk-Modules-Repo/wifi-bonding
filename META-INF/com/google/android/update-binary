@@ -164,8 +164,14 @@ elif [ -f /system/vendor/etc/wifi/$CFG ]; then
 elif [ -f /system/etc/firmware/wlan/qca_cld/$CFG ]; then
   CFGPATH=/system/etc/firmware/wlan/qca_cld/
   Cfg_Migration
+elif [ -f /system/vendor/firmware/wlan/qca_cld/$CFG ]; then
+  CFGPATH=/system/vendor/firmware/wlan/qca_cld/
+  Cfg_Migration
 elif [ -f /system/etc/firmware/wlan/prima/$CFG ]; then
   CFGPATH=/system/etc/firmware/wlan/prima/
+  Cfg_Migration
+elif [ -f /system/vendor/firmware/wlan/prima/$CFG ]; then
+  CFGPATH=/system/vendor/firmware/wlan/prima/
   Cfg_Migration
 else 
   ui_print "- Migration FAILED. "
