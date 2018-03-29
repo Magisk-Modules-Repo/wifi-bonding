@@ -144,7 +144,7 @@ else
   cp -af $CFGPATH$CFG $MODPATH$CFGPATH$CFG
 fi
 ui_print "- Starting modifiy"
-sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g' $MODPATH$CFGPATH$CFG
+sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g;s/#gChannelBondingMode24GHz=1/gChannelBondingMode24GHz=1/g;s/#gChannelBondingMode5GHz=1/gChannelBondingMode5GHz=1/g' $MODPATH$CFGPATH$CFG
 if [ -z $(grep gChannelBondingMode24GHz $MODPATH$CFGPATH$CFG) ]; then
   sed -i 's/^END$/gChannelBondingMode24GHz=1\nEND/g' $MODPATH$CFGPATH$CFG
 fi
