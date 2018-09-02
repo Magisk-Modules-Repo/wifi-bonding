@@ -1,6 +1,7 @@
 #### Magisk WiFi Bonding
 
-Make 2.4Ghz/5Ghz WiFi running at 40Mhz on your Qualcomm devices!
+Make 2.4Ghz/5Ghz WiFi running at 40Mhz on your Qualcomm devices!  
+[中文说明](https://github.com/Magisk-Modules-Repo-CN/magisk-wifi-bonding/blob/master/README.md)
 
 #### Instructions
 
