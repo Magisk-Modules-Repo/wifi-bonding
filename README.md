@@ -21,10 +21,10 @@ This module should work on most of the devices. By default, some devices provide
 
 * You should use latest Magisk Manager to install this module. If you meet any problem under installation from Magisk Manager, please try to install it from recovery.
 * Recent fixes:
-Add more file paths (prima in vendor)
+Magisk v17 Template 17000 compatabilities
 
 #### Credit & Support
 
-* Copyright (C) 2017 simonsmh <simonsmh@gmail.com>
+* Copyright (C) 2017-2018 simonsmh <simonsmh@gmail.com>
 * Any issue or pull request is welcomed.
 * Star this module at [GitHub](https://github.com/Magisk-Modules-Repo/magisk-wifi-bonding).
