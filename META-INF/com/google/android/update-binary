@@ -151,6 +151,10 @@ fi
 if [ -z $(grep gChannelBondingMode5GHz $MODPATH$CFGPATH$CFG) ]; then
   sed -i 's/^END$/gChannelBondingMode5GHz=1\nEND/g' $MODPATH$CFGPATH$CFG
 fi
+sed -i 's/gForce1x1Exception=1/gForce1x1Exception=0/g;s/#gForce1x1Exception=1/gForce1x1Exception=0/g' $MODPATH$CFGPATH$CFG
+if [ -z $(grep gChannelBondingMode24GHz $MODPATH$CFGPATH$CFG) ]; then
+  sed -i 's/^END$/gForce1x1Exception=0\nEND/g' $MODPATH$CFGPATH$CFG
+fi
 }
 
 ui_print "- Migrating WCNSS_qcom_cfg.ini"
