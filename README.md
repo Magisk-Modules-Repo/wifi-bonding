@@ -1,6 +1,6 @@
-#### Magisk WiFi Bonding
+#### Magisk WiFi Bonding and MTK AP useful
 
-Make 2.4Ghz/5Ghz WiFi running at 40Mhz on your Qualcomm devices!  
+Make 2.4Ghz/5Ghz WiFi running at 40Mhz and make 1x1 on MTK solution AP working on your Qualcomm devices!  
 [中文说明](https://github.com/Magisk-Modules-Repo-CN/magisk-wifi-bonding/blob/master/README.md)
 
 #### Instructions
@@ -14,6 +14,7 @@ Please follow the instuction below from @axeldna:
 5. Rebooted the phone (as indicated by Magisk to start the module).
 6. With a phone "free of wifi" and with a fresh Wifi Bonding module, I joined 2.4Ghz wifi networks.
 7. Checked my newly registered 2.4Ghz networks and they are showing 150Mbps Link Speed.
+8. On some MTK solution AP, they are showing 300Mbps Link Speed.
 
 This module should work on most of the devices. By default, some devices provided an ini file to control the wifi behavior. This module modified the `WCNSS_qcom_cfg.ini` in order to support 40mhz. The basic logic is simple, but not all devices need such kind of module. If you can find `WCNSS_qcom_cfg.ini` in your system partition, please open an issue to report it to me; if you can't, this module won't work for you, including almost all Nexus/Pixel devices.
 
