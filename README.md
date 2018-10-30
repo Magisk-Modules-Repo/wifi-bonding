@@ -1,6 +1,6 @@
 #### Magisk WiFi Bonding and MTK AP useful
 
-Make 2.4Ghz/5Ghz WiFi running at 40Mhz and make 1x1 on MTK solution AP working on your Qualcomm devices!  
+Make 2.4Ghz/5Ghz WiFi running at 40Mhz and make 2x2 on MTK solution AP working on your Qualcomm devices!  
 [中文说明](https://github.com/Magisk-Modules-Repo-CN/magisk-wifi-bonding/blob/master/README.md)
 
 #### Instructions
