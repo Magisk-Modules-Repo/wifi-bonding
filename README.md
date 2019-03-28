@@ -1,9 +1,9 @@
-#### Magisk WiFi Bonding and MTK AP useful
+# Magisk WiFi Bonding and MTK AP useful
 
-Make 2.4Ghz/5Ghz WiFi running at 40Mhz and make 2x2 on MTK solution AP working on your Qualcomm devices!  
+Make 2.4Ghz/5Ghz WiFi running at 40Mhz and make 2x2 on MTK solution AP working on your Qualcomm devices!
 [中文说明](https://github.com/Magisk-Modules-Repo-CN/magisk-wifi-bonding/blob/master/README.md)
 
-#### Instructions
+## Instructions
 
 Please follow the instuction below from @axeldna:
 
@@ -18,14 +18,14 @@ Please follow the instuction below from @axeldna:
 
 This module should work on most of the devices. By default, some devices provided an ini file to control the wifi behavior. This module modified the `WCNSS_qcom_cfg.ini` in order to support 40mhz. The basic logic is simple, but not all devices need such kind of module. If you can find `WCNSS_qcom_cfg.ini` in your system partition, please open an issue to report it to me; if you can't, this module won't work for you, including almost all Nexus/Pixel devices.
 
-#### NOTICE
+## NOTICE
 
 * You should use latest Magisk Manager to install this module. If you meet any problem under installation from Magisk Manager, please try to install it from recovery.
 * Recent fixes:
-Magisk v17 Template 17000 compatabilities
+New Magisk Module Format
 
-#### Credit & Support
+## Credit & Support
 
-* Copyright (C) 2017-2018 simonsmh <simonsmh@gmail.com>
+* Copyright (C) 2017-2019 simonsmh <simonsmh@gmail.com>
 * Any issue or pull request is welcomed.
 * Star this module at [GitHub](https://github.com/Magisk-Modules-Repo/magisk-wifi-bonding).
