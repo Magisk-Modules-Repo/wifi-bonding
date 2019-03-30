@@ -123,32 +123,11 @@ REPLACE="
 
 print_modname() {
   ui_print "*******************************"
-  ui_print "      Magisk WiFi Bonding      "
+  ui_print " Magisk Wifi Bonding (Qcom&MTK)"
   ui_print "*******************************"
 }
 
 # Copy/extract your module files into $MODPATH in on_install.
-
-Cfg_Migration(){
-  mkdir -p $MODPATH$CFGPATH
-  if [ -f /sbin/.core/magisk/mirror$CFGPATH$CFG ]; then
-    cp -af /sbin/.core/mirror$CFGPATH$CFG $MODPATH$CFGPATH$CFG
-  else
-    cp -af $CFGPATH$CFG $MODPATH$CFGPATH$CFG
-  fi
-  ui_print "- Starting modifiy"
-  sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g;s/#gChannelBondingMode24GHz=1/gChannelBondingMode24GHz=1/g;s/#gChannelBondingMode5GHz=1/gChannelBondingMode5GHz=1/g' $MODPATH$CFGPATH$CFG
-  if [ -z $(grep gChannelBondingMode24GHz $MODPATH$CFGPATH$CFG) ]; then
-    sed -i 's/^END$/gChannelBondingMode24GHz=1\nEND/g' $MODPATH$CFGPATH$CFG
-  fi
-  if [ -z $(grep gChannelBondingMode5GHz $MODPATH$CFGPATH$CFG) ]; then
-    sed -i 's/^END$/gChannelBondingMode5GHz=1\nEND/g' $MODPATH$CFGPATH$CFG
-  fi
-  sed -i 's/gForce1x1Exception=1/gForce1x1Exception=0/g;s/#gForce1x1Exception=0/gForce1x1Exception=0/g' $MODPATH$CFGPATH$CFG
-  if [ -z $(grep gForce1x1Exception $MODPATH$CFGPATH$CFG) ]; then
-    sed -i 's/^END$/gForce1x1Exception=0\nEND/g' $MODPATH$CFGPATH$CFG
-  fi
-}
 
 on_install() {
   # The following is the default implementation: extract $ZIPFILE/system to $MODPATH
@@ -156,31 +135,29 @@ on_install() {
   ui_print "- Extracting module files"
   unzip -o "$ZIPFILE" 'system/*' -d $MODPATH >&2
 
-  ui_print "- Migrating WCNSS_qcom_cfg.ini"
   CFG=WCNSS_qcom_cfg.ini
-  if [ -f /system/etc/wifi/$CFG ]; then
-    CFGPATH=/system/etc/wifi/
-    Cfg_Migration
-  elif [ -f /system/vendor/etc/wifi/$CFG ]; then
-    CFGPATH=/system/vendor/etc/wifi/
-    Cfg_Migration
-  elif [ -f /system/etc/firmware/wlan/qca_cld/$CFG ]; then
-    CFGPATH=/system/etc/firmware/wlan/qca_cld/
-    Cfg_Migration
-  elif [ -f /system/vendor/firmware/wlan/qca_cld/$CFG ]; then
-    CFGPATH=/system/vendor/firmware/wlan/qca_cld/
-    Cfg_Migration
-  elif [ -f /system/etc/firmware/wlan/prima/$CFG ]; then
-    CFGPATH=/system/etc/firmware/wlan/prima/
-    Cfg_Migration
-  elif [ -f /system/vendor/firmware/wlan/prima/$CFG ]; then
-    CFGPATH=/system/vendor/firmware/wlan/prima/
-    Cfg_Migration
-  else
-    ui_print "- Migration FAILED. "
-    ui_print "  Please report it to the developer with"
-    ui_print "  your WCNSS_qcom_cfg.ini path."
-  fi
+  array=(
+    /system/etc/wifi/
+    /system/vendor/etc/wifi/
+    /system/etc/firmware/wlan/qca_cld/
+    /system/vendor/firmware/wlan/qca_cld/
+    /system/etc/firmware/wlan/prima/
+    /system/vendor/firmware/wlan/prima/
+  )
+  for CFGPATH in ${array[@]}
+  do
+  [[ -f $CFGPATH$CFG ]] && [[ ! -L $CFGPATH$CFG ]] && {
+    SELECTPATH=$CFGPATH$CFG
+    mkdir -p $MODPATH$CFGPATH
+    [[ -f /sbin/.magisk/mirror$SELECTPATH ]] && cp -af /sbin/.magisk/mirror$SELECTPATH $MODPATH$SELECTPATH || cp -af $SELECTPATH $MODPATH$SELECTPATH
+    ui_print "- Starting modifiy"
+    sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g;s/#gChannelBondingMode24GHz=1/gChannelBondingMode24GHz=1/g;s/#gChannelBondingMode5GHz=1/gChannelBondingMode5GHz=1/g;s/gForce1x1Exception=1/gForce1x1Exception=0/g;s/#gForce1x1Exception=0/gForce1x1Exception=0/g' $MODPATH$SELECTPATH
+    [[ -z $(grep gChannelBondingMode24GHz $MODPATH$SELECTPATH) ]] && sed -i 's/^END$/gChannelBondingMode24GHz=1\nEND/g' $MODPATH$SELECTPATH
+    [[ -z $(grep gChannelBondingMode5GHz $MODPATH$SELECTPATH) ]] && sed -i 's/^END$/gChannelBondingMode5GHz=1\nEND/g' $MODPATH$SELECTPATH
+    [[ -z $(grep gForce1x1Exception $MODPATH$SELECTPATH) ]] && sed -i 's/^END$/gForce1x1Exception=0\nEND/g' $MODPATH$SELECTPATH
+  }
+  done
+  [[ -z $SELECTPATH ]] && abort "- Migration FAILED. Please report it to the developer with your WCNSS_qcom_cfg.ini path."
 }
 
 # Only some special files require specific permissions
