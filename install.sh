@@ -136,15 +136,13 @@ on_install() {
   unzip -o "$ZIPFILE" 'system/*' -d $MODPATH >&2
 
   CFG=WCNSS_qcom_cfg.ini
-  array=(
-    /system/etc/wifi/
+  array='/system/etc/wifi/
     /system/vendor/etc/wifi/
     /system/etc/firmware/wlan/qca_cld/
     /system/vendor/firmware/wlan/qca_cld/
     /system/etc/firmware/wlan/prima/
-    /system/vendor/firmware/wlan/prima/
-  )
-  for CFGPATH in ${array[@]}
+    /system/vendor/firmware/wlan/prima/'
+  for CFGPATH in $array
   do
   [[ -f $CFGPATH$CFG ]] && [[ ! -L $CFGPATH$CFG ]] && {
     SELECTPATH=$CFGPATH$CFG
