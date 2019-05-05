@@ -122,9 +122,9 @@ REPLACE="
 # Set what you want to display when installing your module
 
 print_modname() {
-  ui_print "*******************************"
-  ui_print " Magisk Wifi Bonding (Qcom&MTK)"
-  ui_print "*******************************"
+  ui_print "**************************"
+  ui_print "Magisk Wifi Bonding (Qcom)"
+  ui_print "**************************"
 }
 
 # Copy/extract your module files into $MODPATH in on_install.
@@ -140,8 +140,12 @@ on_install() {
     /system/vendor/etc/wifi/
     /system/etc/firmware/wlan/qca_cld/
     /system/vendor/firmware/wlan/qca_cld/
+    /system/etc/firmware/wlan/QCA_CLD/
+    /system/vendor/firmware/wlan/QCA_CLD/
     /system/etc/firmware/wlan/prima/
-    /system/vendor/firmware/wlan/prima/'
+    /system/vendor/firmware/wlan/prima/
+    /system/etc/firmware/wlan/PRIMA/
+    /system/vendor/firmware/wlan/PRIMA/'
   for CFGPATH in $array
   do
   [[ -f $CFGPATH$CFG ]] && [[ ! -L $CFGPATH$CFG ]] && {

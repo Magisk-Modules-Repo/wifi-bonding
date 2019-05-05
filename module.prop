@@ -1,6 +1,6 @@
 id=wifi-bonding
-name=Wifi Bonding
-version=1.9
-versionCode=10
+name=Wifi Bonding (Qcom)
+version=1.10
+versionCode=11
 author=simonsmh
-description=Make 2.4Ghz/5Ghz WiFi running at 40Mhz and make 1x1 on MTK solution AP working on your Qualcomm devices.
+description=Double your bandwith.
