@@ -132,25 +132,13 @@ print_modname() {
 on_install() {
   # The following is the default implementation: extract $ZIPFILE/system to $MODPATH
   # Extend/change the logic to whatever you want
-  ui_print "- Extracting module files"
-  unzip -o "$ZIPFILE" 'system/*' -d $MODPATH >&2
-
-  CFG=WCNSS_qcom_cfg.ini
-  array='/system/etc/wifi/
-    /system/vendor/etc/wifi/
-    /system/etc/firmware/wlan/qca_cld/
-    /system/vendor/firmware/wlan/qca_cld/
-    /system/etc/firmware/wlan/QCA_CLD/
-    /system/vendor/firmware/wlan/QCA_CLD/
-    /system/etc/firmware/wlan/prima/
-    /system/vendor/firmware/wlan/prima/
-    /system/etc/firmware/wlan/PRIMA/
-    /system/vendor/firmware/wlan/PRIMA/'
-  for CFGPATH in $array
+  array=$(find /system /vendor -name WCNSS_qcom_cfg.ini)
+  for CFG in $array
   do
-  [[ -f $CFGPATH$CFG ]] && [[ ! -L $CFGPATH$CFG ]] && {
-    SELECTPATH=$CFGPATH$CFG
-    mkdir -p $MODPATH$CFGPATH
+  [[ -f $CFG ]] && [[ ! -L $CFG ]] && {
+    SELECTPATH=$CFG
+    mkdir -p `dirname $MODPATH$CFG`
+    ui_print "- Migrating $CFG"
     [[ -f /sbin/.magisk/mirror$SELECTPATH ]] && cp -af /sbin/.magisk/mirror$SELECTPATH $MODPATH$SELECTPATH || cp -af $SELECTPATH $MODPATH$SELECTPATH
     ui_print "- Starting modifiy"
     sed -i 's/gChannelBondingMode24GHz=0/gChannelBondingMode24GHz=1/g;s/gChannelBondingMode5GHz=0/gChannelBondingMode5GHz=1/g;s/#gChannelBondingMode24GHz=1/gChannelBondingMode24GHz=1/g;s/#gChannelBondingMode5GHz=1/gChannelBondingMode5GHz=1/g;s/gForce1x1Exception=1/gForce1x1Exception=0/g;s/#gForce1x1Exception=0/gForce1x1Exception=0/g' $MODPATH$SELECTPATH
@@ -159,7 +147,7 @@ on_install() {
     [[ -z $(grep gForce1x1Exception $MODPATH$SELECTPATH) ]] && sed -i 's/^END$/gForce1x1Exception=0\nEND/g' $MODPATH$SELECTPATH
   }
   done
-  [[ -z $SELECTPATH ]] && abort "- Migration FAILED. Please report it to the developer with your WCNSS_qcom_cfg.ini path."
+  [[ -z $SELECTPATH ]] && abort "- Installation FAILED. Your device didn't support WCNSS_qcom_cfg.ini." || { mkdir -p $MODPATH/system; mv -f $MODPATH/vendor $MODPATH/system/vendor;}
 }
 
 # Only some special files require specific permissions

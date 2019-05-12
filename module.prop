@@ -1,6 +1,6 @@
 id=wifi-bonding
 name=Wifi Bonding (Qcom)
-version=1.10
-versionCode=11
+version=1.11
+versionCode=12
 author=simonsmh
-description=Double your bandwith.
+description=Double your bandwith by modify WCNSS_qcom_cfg.ini.
