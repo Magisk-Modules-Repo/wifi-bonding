@@ -49,7 +49,10 @@ Please follow the instuction below from @axeldna: 请按照说明进行操作
 
 * You should use latest Magisk Manager to install this module. If you meet any problem under installation from Magisk Manager, please try to install it from recovery. 您应该使用最新的Magisk Manager来安装此模块。如果您在Magisk Manager中安装模块遇到问题，请尝试使用Recovery来安装
 
-* Recent fixes: Update project structure. 最近修复：更新项目架构
+* Recent fixes: 
+
+Update for magisk tmpfs location changes.
+
 
 ## Credit & Support 版权及支持
 * Copyright (C) 2017-2020 simonsmh <simonsmh@gmail.com>
