@@ -21,6 +21,11 @@ gChannelBondingMode5GHz=1
 gForce1x1Exception=0
 ```
 
+- Enable SAE WPA3. 开启SAE WPA3。
+```
+sae_enabled=1
+```
+
 This module should work on most of the devices. The basic logic is simple, but not all devices need such kind of module. If you can find `WCNSS_qcom_cfg.ini` in your system partition, please open an issue to report it to me; if you can't, this module won't work for you, including almost all Nexus/Pixel devices.
 
 该模块可在大多数设备上使用。其逻辑很简单，但是并非所有设备都适用该模块。如果您可以在系统分区中找到`WCNSS_qcom_cfg.ini`，请创建 issue 告诉我。 如果不能，则该模块将对您的设备不起作用，包括几乎所有的 Nexus / Pixel 设备。

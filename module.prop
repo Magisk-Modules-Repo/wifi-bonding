@@ -1,7 +1,7 @@
 id=wifi-bonding
 name=Wifi Bonding (Qcom)
-version=1.14
-versionCode=15
+version=1.15
+versionCode=16
 author=simonsmh
 description=Doubles your wi-fi bandwith by modifying WCNSS_qcom_cfg.ini.
 updateJson=https://cdn.jsdelivr.net/gh/Magisk-Modules-Repo/wifi-bonding/version.json
