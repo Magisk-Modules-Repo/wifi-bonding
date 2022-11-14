@@ -1,0 +1,23 @@
+name: Upload zip
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Make release zip
+      run: |
+        wget https://github.com/topjohnwu/Magisk/raw/master/scripts/module_installer.sh -O META-INF/com/google/android/update-binary
+        zip -9 -x "*.git*" -r ../wifi_bonding.zip ./
+        sha256sum ../wifi_bonding.zip > ../wifi_bonding.zip.sha256sum
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          ../wifi_bonding.zip
+          ../wifi_bonding.zip.sha256sum
+    - uses: actions/upload-artifact@v1
+      with:
+        name: wifi_bonding
+        path: ./
