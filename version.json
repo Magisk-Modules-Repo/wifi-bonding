@@ -1,6 +1,6 @@
 {
-  "version": "1.15",
-  "versionCode": 16,
-  "zipUrl": "https://github.com/Magisk-Modules-Repo/wifi-bonding/releases/download/16/wifi_bonding.zip",
+  "version": "1.16",
+  "versionCode": 17,
+  "zipUrl": "https://github.com/Magisk-Modules-Repo/wifi-bonding/releases/download/17/wifi_bonding.zip",
   "changelog": "https://cdn.jsdelivr.net/gh/Magisk-Modules-Repo/wifi-bonding/README.md"
 }
