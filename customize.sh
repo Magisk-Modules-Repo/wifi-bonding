@@ -1,9 +1,10 @@
-if [ "$MAGISK_VER_CODE" -lt 24000 ]; then
-ui_print "*********************************************************"
-ui_print "! Please install Magisk v24+"
-abort    "*********************************************************"
+[ -x `which magisk` ] && {
+if magisk --denylist ls &>/dev/null; then
+CMDPREFIX="magisk --denylist exec"
+elif magisk magiskhide ls &>/dev/null; then
+CMDPREFIX="magisk magiskhide exec"
 fi
-[ -x "$(which magisk)" ] && CMDPREFIX="magisk --denylist exec" || unset CMDPREFIX
+} || unset CMDPREFIX
 CHECK_DIRS="/system /vendor /product /system_ext"
 EXISTING_DIRS=""
 for dir in $CHECK_DIRS; do
